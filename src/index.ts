@@ -53,7 +53,7 @@ import { Context } from '@actions/github/lib/context';
 })();
 
 function getToken(context: Context): string {
-    return !!context.github.token;
+    return !!context.token;
 }
 
 function getCleanUsersList(context: Context, rawUserList: string = ``): string[] {
