@@ -5,7 +5,7 @@ import { Context } from '@actions/github/lib/context';
 (async () => {
     try {
         const context: Context = github?.context;
-        const token: string = context?.github.token;
+        const token: string = context?.token;
         const ignoreDrafts: string = core.getInput('ignore-drafts', { required: false });
         const users: string[] = getCleanUsersList(context, core.getInput('users', { required: true }));
 
