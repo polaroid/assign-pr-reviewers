@@ -5,7 +5,7 @@ import { Context } from '@actions/github/lib/context';
 (async () => {
     try {
         const context: Context = github?.context;
-        const token: string = github?.token;
+        const token: string = getToken(context);
         const ignoreDrafts: string = core.getInput('ignore-drafts', { required: false });
         const users: string[] = getCleanUsersList(context, core.getInput('users', { required: true }));
 
@@ -51,6 +51,10 @@ import { Context } from '@actions/github/lib/context';
         throw error;
     }
 })();
+
+function getToken(context: Context): string {
+    return !!context.github.token;
+}
 
 function getCleanUsersList(context: Context, rawUserList: string = ``): string[] {
     let users: string[] = [...rawUserList?.split(',')?.map(user => user?.trim())];
